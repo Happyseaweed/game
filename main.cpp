@@ -9,46 +9,46 @@
 #include "variables.h"
 
 void ran (){
-    for (size_t i = 0; i < 1; ++i){
-        switch(rand() % 4){
-            case 0: astroids(); break;
-            case 1: blackhole(); break;
-            case 2: std::cout << "YES WORKS" << std::endl; break;
+    srand(time(0));
+        switch(rand() % 3 + 1){
+            case 1: astroids(); break;
+            case 2: blackhole(); break;
+            case 3: std::cout << "YES WORKS" << std::endl; break;
         }
-    }
 }
 
 //Function to print all the scanners at once:
+
     void allbegin(){
         std::cout << "Scanner Status: \n" << std::endl;
-            atmo(atmoPc);
+            atmo(varList[1]);
             usleep(200000);
 
-            gravity(gravPc);
+            gravity(varList[2]);
             usleep(200000);
 
-            reso(resoPc);
+            reso(varList[3]);
             usleep(200000);
 
-            water(watePc);
+            water(varList[4]);
             usleep(200000);
 
-            temperature(tempPc);
+            temperature(varList[5]);
             usleep(200000);
 
-            science(sciPc);
+            science(varList[6]);
             usleep(200000);
 
-            culture(culPc);
+            culture(varList[7]);
             usleep(200000);
 
-            landing(lanPc);
+            landing(varList[8]);
             usleep(200000);
 
-            construction(conPc);
+            construction(varList[9]);
             usleep(200000);
 
-            probe(probNum);
+            probe(varList[0]);
             usleep(200000);
     }
 
@@ -66,8 +66,9 @@ void ran (){
             probe(probNum);
     }
 
+
 //Texts to be printed to console: 
-    std::string start = "It is the year 3048, the human civilization has come to an end. Earth is no longer habitable, the humans built"
+    std::string start = "It is the year 2089, the human civilization has come to an end. Earth is no longer habitable, the humans built"
                     " a space ship with their last availible resources. The ship is called C1000. The 1000 " 
                     " astronouts onboard are in deep sleep. Their mission is to find a new habitable planet and continue the colonize it "
                     " in order to to coninue the human civilization.";
@@ -75,6 +76,9 @@ void ran (){
     std::string start2 = "[You are playing as the ship AI, your responsibility is to find the most suitable planet for human civilization.]\n"
                          "[This here is your control panel, where you can see the scanners.]";
 
+
+
+//Main
 
 int main(){
     //Welcome Page:
@@ -99,34 +103,75 @@ while(tolower(userInput) != 'b')
         std::cout << "Enter C to Continue!" << std::flush;
         std::cin >> userInput;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    
+    /*
     //Game control Panel:
         system("clear");
         allbegin();
     //Exploration Starts:
-
+    
         slow_print("*You are about to enter the orbit of your first planet*\n\n\n");
-        planet(atmoPc, gravPc, resoPc, watePc, tempPc, atmoCon, gravCon, resoCon, wateCon, tempCon);
+        //1st
+        system("clear");
+        all();
+        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
         land();
         system("clear");
-        all();
-        std::cout << '\n';
-        ran();
-        usleep(1000000);
-        system("clear");
-        usleep(100000);
-        std::cout << "You arrive at a new planet!" << std::endl;
-        system("clear");
-        all();
-        std::cout << '\n';
-        planet(atmoPc, gravPc, resoPc, watePc, tempPc, atmoCon, gravCon, resoCon, wateCon, tempCon);
-        land(); 
-        //ran();
-        meteor(atmoPc, resoPc);
-        all();
-        planet(atmoPc, gravPc, resoPc, watePc, tempPc, atmoCon, gravCon, resoCon, wateCon, tempCon);
-        usleep(1000000);
 
+        //2nd
+        all();        
+        astroids();
+        std::cout << "Enter C to Continue!" << std::flush;
+        std::cin >> userInput;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        system("clear");
+        all();
+        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
+        land();
+        system("clear");
+        
+        //3rd
+        all();
+        astroids();
+        std::cout << "Enter C to Continue!" << std::flush;
+        std::cin >> userInput;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        system("clear");
+        all();
+        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
+        land();
+        system("clear");
+        
+        //4th
+        all();
+        astroids();
+        std::cout << "Enter C to Continue!" << std::flush;
+        std::cin >> userInput;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        system("clear");
+        all();
+        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
+        land();
+        system("clear");
+        
+        //5th
+        all();
+        astroids();
+        std::cout << "Enter C to Continue!" << std::flush;
+        std::cin >> userInput;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        system("clear");
+        all();
+        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
+        land(); 
+        */
+        ran();
+        //ran();
+        //meteor(atmoPc, resoPc);
+        //all();
+        //planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
+        //usleep(1000000);
+        
+       
     } else {
         
         std::cout << "[You have failed to enter a choice, please enter one of the listed options: ]\n" << std::endl;

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -5,22 +7,36 @@
 #include <chrono>
 #include <unistd.h>
 #include <thread>
-//#include "variables.h"
-
+#include "variables.h"
+#include "functions.h"
+//Status: Complete && working
 void astroids() {
     srand(time(0));
     char option;
-    std::cout << "An astroid field is detected, you can risk flying through the field to get to your planet, or you can switch your route." << std::endl;
+    std::cout << "\nAn astroid field is detected, you can risk flying through the field to get to your planet, or you can switch your route." << std::endl;
     std::cout << "(A) Fly through astroid field" << std::endl;
     std::cout << "(B) Change route." << std::endl;
     std::cin >> option;
-    int randNum = 1 + (rand()%6);
+    int randNum = randomNumberGenerator();
+    int randDmg = randomNumberGenerator();
+
     if (tolower(option) == 'a'){
         std::cout << "You risked flying through the astroid field" << std::endl;
-    //random chance generator for probability of damaged components. 
-        if (randNum >= 6){
-            std::cout << "Your ship has been damaged!" << std::endl;
-        } else if (randNum <= 5){
+    //PROBLEM: If randnum is already declard randomly, 
+    //and the if condition only accepts it when it is above or equal to 5
+    //This means that there is no chance of damage done to the scanners (1 to 4)
+    //Solution? Seperate randum variable, or just use the function
+        if (randomNumberGenerator() >= 4){
+            
+            start:
+            if (randNum != 0 /* && randNum != 10*/){
+                varList[randNum] -= randDmg;
+                std::cout << "Astroids collide with your ship, ripping and damaging the componants.\n" << std::endl;
+            } else {
+                randNum = randomNumberGenerator();
+                goto start;
+            }
+        } else {
             std::cout << "Your ship flied through safetly!" << std::endl;
         }
     } 
@@ -29,20 +45,24 @@ void astroids() {
     }
 
 }
-
+//Status: Fixing
 void blackhole(){
     //Detected by some scanners
     char response;
-    std::cout << "You come across a unusual spot, some of your scanners detect a strange gravitational pull, the only reasonable answer to this would be, a black hole" << std::endl;
-    std::cout << "You can trust your scanners and activate your thrusters and try to escape the black hole, or you can ignore it for system malfunction." << std::endl;
+    std::cout << "You come across a unusual spot, some of your scanners detect a strange gravitational pull, the only possible answer is a nearby Black Hole" << std::endl;
+    std::cout << "You can trust your scanners and activate your thrusters and try to escape the black hole, or you can ignore it, the extreme conditions of space might have made it malfunction." << std::endl;
     std::cout << "[A] Attempt to escape, engage thrusters to 150%" << std::endl;
     std::cout << "[B] Ignore and stay on course " << std::endl;
     std::cin >> response;
-    srand(time(0));
+    //srand(time(0));
     if (tolower(response) == 'a'){
-        if (1+rand()%6 >= 5){
+        int randNum = randomNumberGenerator();
+        int randDmg = randomNumberGenerator();
+        if (randNum >= 5){
+            
             std::cout << "You have flown away" << std::endl;
         } else {
+
             std::cout << "You tried to escape, but it was too late, the ship gets torn apart" << std::endl;
         }
     } 
@@ -80,5 +100,17 @@ void meteor(int atmoPc, int resoPc){
             std::cout << "You rotate your ship, and the meteor hits the scanners and damages the resource scanner" << std::endl;
             resoPc = resoPc - hit*2;
         }
+    }
+}
+
+void oHeat(){
+    char res;
+    std::cout << "The ventilation systems are failing, and the CryoSleep chambers are over heating" << std::endl;
+    std::cout << "[A]Shut entire system down to bring down temperature" << std::endl;
+    std::cout << "[B]Eject Cryosleep chambers to lessen system load" << std::endl;
+    std::cin >> res;
+    if (tolower(res) == 'a'){
+        std::cout << "You chose to shut down the entire system." << std::endl;
+        
     }
 }
