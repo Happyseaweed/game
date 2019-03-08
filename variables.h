@@ -7,7 +7,6 @@
 #include <limits>
 #include <term.h>
 
-
 int probNum = 10; // 0
 int atmoPc = 100; // 1
 int gravPc = 100; // 2
@@ -19,6 +18,8 @@ int culPc = 100; // 7
 int lanPc = 100; // 8
 int conPc = 100; // 9
 int human = 1000; // 10
+int power = 100;
+int resourceIter = 0;
 
 
 int varList[11] = {probNum, atmoPc, gravPc, resoPc, watePc, tempPc, sciPc, culPc, lanPc, conPc, human};

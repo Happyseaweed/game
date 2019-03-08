@@ -8,6 +8,9 @@
 #include "events.h"
 #include "variables.h"
 
+
+
+
 void ran (){
     srand(time(0));
         switch(rand() % 3 + 1){
@@ -50,10 +53,13 @@ void ran (){
 
             probe(varList[0]);
             usleep(200000);
+
+            powerPercentage(power);
+            usleep(200000);
     }
 
     void all(){
-        std::cout << "Scanner Status: \n" << std::endl;
+        std::cout << "\nScanner Status: \n" << std::endl;
             atmo(atmoPc);
             gravity(gravPc);
             reso(resoPc);
@@ -64,17 +70,21 @@ void ran (){
             landing(lanPc);
             construction(conPc);
             probe(probNum);
+            powerPercentage(power);
+            std::cout << "__________________________________________________" << std::endl;//50 spaces
     }
 
 
 //Texts to be printed to console: 
-    std::string start = "It is the year 2089, the human civilization has come to an end. Earth is no longer habitable, the humans built"
-                    " a space ship with their last availible resources. The ship is called C1000. The 1000 " 
-                    " astronouts onboard are in deep sleep. Their mission is to find a new habitable planet and continue the colonize it "
-                    " in order to to coninue the human civilization.";
+    std::string start = "It is the year 2150, the human civilization has come to an end. Earth is no longer habitable, the humans built"
+                    " a space ship with their last availible resources. As the count down ends and the engines of the ship roars to life."
+                    "The last hopes of human civilization rest in the cryosleep chambers of the ship. The people on Earth begins shrinking,"
+                    "smaller and smaller, until each are just a tiny dot. Scientist have created the most intelligen AI in history to guide"
+                    "this ship, the AI's job is to scan each planet the ship arrives at and decides if it is suitable for human survival"
+                    "in order to prevent the end of human civilization.";
 
-    std::string start2 = "[You are playing as the ship AI, your responsibility is to find the most suitable planet for human civilization.]\n"
-                         "[This here is your control panel, where you can see the scanners.]";
+    std::string start2 = "[You, are the work of millions of scientists. This is your responsibility to ensure that humans does not go extinct.]\n"
+                         "[Scanners Booting up. . .]";
 
 
 
@@ -84,12 +94,13 @@ int main(){
     //Welcome Page:
         char userInput;
         char response;
-        printf("\nWelcome To Space Seed!\n");
-        std::cout << "[A] [New Game]" << std::endl;
+        system("clear");
+        printf("\n[–––§ Welcome To 2150! §–––]\n\n");
+        std::cout << "[A] [Play]" << std::endl;
         std::cout << "[B] [Exit]" << std::endl;
         std::cin >> userInput;
 //game:
-while(tolower(userInput) != 'b')
+//while(tolower(userInput) != 'b')//-------------------------------------------------------------------------------------------------------------------------------------------
     if (tolower(userInput) == 'a'){
     //Start up Message:
         system("clear");
@@ -103,20 +114,21 @@ while(tolower(userInput) != 'b')
         std::cout << "Enter C to Continue!" << std::flush;
         std::cin >> userInput;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    /*
+    
     //Game control Panel:
         system("clear");
         allbegin();
     //Exploration Starts:
-    
-        slow_print("*You are about to enter the orbit of your first planet*\n\n\n");
+        slow_print("*As the ship sails into the dark abyss of space, You come across your first planet*\n\n\n");
+        usleep(2000000);
         //1st
         system("clear");
         all();
-        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
-        land();
+        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon, resourceIter);
+        land(resourceIter);
         system("clear");
 
+    while(power >= 0){
         //2nd
         all();        
         astroids();
@@ -125,11 +137,11 @@ while(tolower(userInput) != 'b')
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         system("clear");
         all();
-        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
-        land();
+        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon, resourceIter);
+        land(resourceIter);
         system("clear");
-        
-        //3rd
+    }
+        /*3rd
         all();
         astroids();
         std::cout << "Enter C to Continue!" << std::flush;
@@ -137,8 +149,8 @@ while(tolower(userInput) != 'b')
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         system("clear");
         all();
-        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
-        land();
+        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon, resourceIter);
+        land(resourceIter);
         system("clear");
         
         //4th
@@ -149,8 +161,8 @@ while(tolower(userInput) != 'b')
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         system("clear");
         all();
-        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
-        land();
+        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon, resourceIter);
+        land(resourceIter);
         system("clear");
         
         //5th
@@ -161,9 +173,9 @@ while(tolower(userInput) != 'b')
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         system("clear");
         all();
-        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
-        land(); 
-        */
+        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon, resourceIter);
+        land(resourceIter); 
+        
         ran();
         //ran();
         //meteor(atmoPc, resoPc);
@@ -171,17 +183,18 @@ while(tolower(userInput) != 'b')
         //planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
         //usleep(1000000);
         
-       
-    } else {
-        
+       */
+    } 
+    else if (tolower(userInput) == 'b' ){
+        system("clear");
+        std::cout << "Thank you for playing" << std::endl;
+        std::cout << "Game: 2150" << std::endl;
+        std::cout << "Created by: Siwei Du, 2018\n\n\n" << std::endl;
+    
+    } else {    
         std::cout << "[You have failed to enter a choice, please enter one of the listed options: ]\n" << std::endl;
         std::cin >> userInput;
     }
-    return 0;
-//End credits: 
-    if (tolower(userInput) == 'b' ){
-    std::cout << "Thank you for playing" << std::endl;
-    std::cout << "Game: Space Seed" << std::endl;
-    std::cout << "Created by: Siwei Du, 2018" << std::endl;
-    } 
+    
+    return 0; 
 }
