@@ -17,12 +17,13 @@ int randomNumberGenerator(){ // generates a random number from 1 to 10
 
 //_________________________________________________________________________________________________________________________________________________
 
-void planet (int scan[], std::string atmoCon[], std::string gravCon[], std::string resoCon[], std::string wateCon[], std::string tempCon[], int resourceIter) {
+
+void planet (int scan[], std::string atmoCon[], std::string gravCon[], std::string resoCon[], std::string wateCon[], std::string tempCon[], int &resourceIter) {
     std::cout << "\nYou arrive at a planet: \n" << std::endl;
     srand(time(0));
     int randomScan = randomNumberGenerator();
 
-    if (varList[1] == 100){
+    if (atmoPc == 100){
         std::cout << "[Atmosphere]: " << atmoCon[1 + rand()%5] << std::endl;
     } else {
         if (randomScan >= 3){
@@ -33,7 +34,7 @@ void planet (int scan[], std::string atmoCon[], std::string gravCon[], std::stri
 
     }
 
-    if (varList[2] == 100){
+    if (gravPc == 100){
         std::cout << "[Gravity]: " << gravCon[1 + rand()%5] << std::endl;
     } else {
         if (randomScan >= 3){
@@ -43,14 +44,14 @@ void planet (int scan[], std::string atmoCon[], std::string gravCon[], std::stri
         }
     }
 
-    if (varList[3] == 100){
-        resourceIter = 1 + rand()%5;
+    if ( == 100){
+        resourceIter = 1 + rand()%5; //Determaining the amount of fuel that is refueled
         std::cout << "[Resources]: " << resoCon[resourceIter] << std::endl;
     } else {
         if (randomScan >= 3) {
             std::cout << "[Resources]:"; usleep(10000); std::cout << " Scan Failed" << std::endl;    
         }else{
-            std::cout << "[Resources]: " << resoCon[1 + rand()%5] << std::endl;
+            std::cout << "[Resources]: " << resoCon[resourceIter] << std::endl;
         }
     }
 
@@ -75,43 +76,51 @@ void planet (int scan[], std::string atmoCon[], std::string gravCon[], std::stri
     }
 }
 
-void land(int resourceIter){
+void land(int &resourceIter){
     char land;
     std::cout << "\n[A]Land    [B]Skip" << std::endl;
     std::cin >> land;
     if (tolower(land) == 'a'){
-        std::cout << "\n[A] Refuel     [B] Colonize" << std::endl;
-        std::cin >> land;
+        if (resourceIter != 5){
+            std::cout << "\n[A] Refuel + "<<(resourceIter + 1) * 2  <<"    [B] Colonize" << std::endl;
+            std::cin >> land;
+        } else {
+            std::cout << "\n[A] Refuel + 0    [B] Colonize" << std::endl;
+            std::cin >> land;
+        }
+
         if (tolower(land) == 'a'){
+
             switch (resourceIter){
                 case 0:
-                    power += 5;
+                    power += 3;
                     break;
-                case 1:
-                    power += 7;
+                case 1:  
+                    power += 4;
                     break;
                 case 2:
-                    power += 10;
+                    power += 5;
                     break;
                 case 3:
-                    power += 15;
+                    power += 6;
                     break;
                 case 4:
-                    power += 20;
+                    power += 10;
                     break;
                 case 5:
                     power += 0;
                     break;
+
                 default:
                     break;
             
             }
+            
         }
         else if (tolower(land) == 'b'){
             std::cout << "You have chosen to colonize this planet, give it a name!!" << std::endl;
             std::string planetName;
             getline(std::cin, planetName);
-            std::cout << "The ship " << std::endl;
         }
     }
     else if (tolower(land) == 'b'){
@@ -165,10 +174,13 @@ void powerPercentage(int powerPc){
     std::cout << "Power: " << powerPc << '%' << std::endl;
 }
 
-void humanAlive(int human){
+void humanAlive(int &human){
     std::cout << "Humans Alive: " << human << std::endl;
 }
 
+void yearsPassed(int &year){
+    std::cout << "Years Passed: " << year << std::endl;
+}
 //Misc Functions:
 
 void slow_print(const std::string message){
@@ -177,3 +189,21 @@ void slow_print(const std::string message){
         usleep(10000);
     }
 }
+
+void all(){
+        std::cout << "\nScanner Status: \n" << std::endl;
+            atmo(atmoPc);
+            gravity(gravPc);
+            reso(resoPc);
+            water(watePc);
+            temperature(tempPc);
+            science(sciPc);
+            culture(culPc);
+            landing(lanPc);
+            construction(conPc);
+            probe(probNum);
+            powerPercentage(power);
+            humanAlive(human);
+            yearsPassed(year);
+            std::cout << "__________________________________________________" << std::endl;//50 spaces
+    }

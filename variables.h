@@ -2,10 +2,10 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
 #include <unistd.h>
-#include <limits>
 #include <term.h>
+
+const int varSize = 13;
 
 int probNum = 10; // 0
 int atmoPc = 100; // 1
@@ -19,15 +19,18 @@ int lanPc = 100; // 8
 int conPc = 100; // 9
 int human = 1000; // 10
 int power = 100;
-int resourceIter = 0;
+int resourceIter = 0;//special
+int year = 0; // Amount of years from the start of the exploration
 
 
-int varList[11] = {probNum, atmoPc, gravPc, resoPc, watePc, tempPc, sciPc, culPc, lanPc, conPc, human};
-
+int *varList[13] = {&probNum, &atmoPc, &gravPc, &resoPc, &watePc, &tempPc, &sciPc, &culPc, &lanPc, &conPc, &human, &power, &resourceIter};
+//1, 2, 3
 
 
 std::string atmoCon[] = {"Non Breathable", "Corrosive", "Toxic", "Contains Oxygen", "Breathable", "None"};
 std::string gravCon[] = {"Very Low", "Low", "Similar to Earth", "High", "Very High", "None"};
-std::string resoCon[] = {"Rare", "Limited", "Uncommon", "Moderate", "Rich", "None"};
+std::string resoCon[] = {"Rare", "Limited", "Uncommon", "Moderate", "Rich", "None"}; // determines the refuel amount
+                        // +2        +4      +6           +8          +10       +0
+                        // 0 1 2 3 4 5
 std::string wateCon[] = {"Scarce", "Rivers", "Very little", "Oceans", "Ice Caps", "None"};
 std::string tempCon[] = {"Near Absolute Zero", "Very Cold", "Cold", "Moderate", "Hot", "Very Hot"};

@@ -14,12 +14,21 @@
 void astroids() {//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     srand(time(0));
     char option;
-    std::cout << "\nAn astroid field is detected, you can risk flying through the field to get to your planet, or you can switch your route." << std::endl;
-    std::cout << "(A) Fly through astroid field" << std::endl;
-    std::cout << "(B) Change route." << std::endl;
-    std::cin >> option;
     int randNum = randomNumberGenerator(); // random number 
     int randDmg = randomNumberGenerator(); //Random damage for the scanners
+    int randSaying = randomNumberGenerator(); // Random integer for the story
+    
+    if (randSaying >= 5){ // different story
+        std::cout << "\nAn astroid field is detected, you can risk flying through the field to get to your planet, or you can switch your route." << std::endl;
+        std::cout << "(A) Fly through astroid field" << std::endl;
+        std::cout << "(B) Change route." << std::endl;
+        std::cin >> option;
+    } else {
+        std::cout << "\nAn Large astroid field has been detected, blocking your path to your next planet. You can: " << std::endl;
+        std::cout << "(A) Fly through astroid field" << std::endl;
+        std::cout << "(B) Change route." << std::endl;
+        std::cin >> option;
+    }
 
     if (tolower(option) == 'a'){
         std::cout << "You risked flying through the astroid field" << std::endl;
@@ -29,46 +38,68 @@ void astroids() {//-------------------------------------------------------------
         //Solution? Seperate randum variable, or just use the function
     //Random Damage: 
         if (randomNumberGenerator() > 3){
-            
+            randNum = randomNumberGenerator();
             start:
             if (randNum != 0 && randNum != 10){
                 varList[randNum] -= randDmg;
                 std::cout << "Astroids collide with your ship, ripping and damaging the componants.\n" << std::endl;
             } else {
-                randNum = randomNumberGenerator();
+                std::cout << "hello" << std::endl;
                 goto start;
             }
-            power = power - 1;
+            power = power - 2;
         } else {
             std::cout << "Your ship flied through safetly!" << std::endl;
-            power = power - 1;
+            power = power - 2;
         }
     } 
     else if (tolower(option) == 'b') {
-        std::cout << "You have changed the ship's route" << std::endl;
-        power = power - 2;
+        std::cout << "You have changed the ship's route, you are now heading towards a new planet" << std::endl;
+        power = power - 4;
+        if (randomNumberGenerator() >= 5){
+            system("clear");
+            all();
+            astroids();
+        }
+    
     }
 }
 //Status: Fixing
 void blackhole(){//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Detected by some scanners
     char response;
-    std::cout << "You come across a unusual spot, some of your scanners detect a strange gravitational pull, the only possible answer is a nearby Black Hole" << std::endl;
-    std::cout << "You can trust your scanners and activate your thrusters and try to escape the black hole, or you can ignore it, the extreme conditions of space might have made it malfunction." << std::endl;
-    std::cout << "[A] Attempt to escape, engage thrusters to 150%" << std::endl;
-    std::cout << "[B] Ignore and stay on course " << std::endl;
-    std::cin >> response;
+    int randNum = randomNumberGenerator();
+    int randDmg = randomNumberGenerator();
+    int randSaying = randomNumberGenerator();
+    if (randSaying >= 5){
+        std::cout << "You come across a unusual spot, your gravity scanner detects a sharp, strange gravitational pull but all other scanners do not detect anything, there is only one possibility, a black hole." << std::endl;
+        std::cout << "Your ship begins to turn towards the abyss of space, where you see a slight curve in the area around it." << std::endl;
+        std::cout << "[A] Push the engines past their safety limit and attempt to escape the 'black hole'. . ." << std::endl;
+        std::cout << "[B] Restart the scanners, the harsh conditions of space might have caused it to malfunction." << std::endl;
+        std::cin >> response;
+    } else {
+        std::cout << "" << std::endl;
+        std::cout << "You can trust your scanners and activate your thrusters and try to escape the black hole, or you can ignore it, the extreme conditions of space might have made it malfunction." << std::endl;
+        std::cout << "[A] Push the engines past their safety limit and attempt to escape the 'black hole'. . ." << std::endl;
+        std::cout << "[B] Restart the scanners, the harsh conditions of space might have caused it to malfunction." << std::endl;
+        std::cin >> response;
+    }
     //srand(time(0));
     if (tolower(response) == 'a'){
-        int randNum = randomNumberGenerator();
-        int randDmg = randomNumberGenerator();
         if (randNum >= 5){
-            
-            std::cout << "You have flown away" << std::endl;
-
+            std::cout << "You have flown away safely, you were almost in the grasp of unescapeble gravity." << std::endl;
+            power = power - 10;
         } else {
-
-            std::cout << "You were just fast enough to able to escape, but pieces of your ship gets torned off and dissappears into the dark abyss" << std::endl;
+            std::cout << "You were able to escape, but barely, large amounts of scrap metal gets ripped off of your ship and falls back into the black hole . . ." << std::endl;
+            randNum = randomNumberGenerator();
+            
+            start:
+            if (randNum != 0 && randNum != 10){
+                varList[randNum] -= randDmg;
+            } else {
+                goto start;
+            }
+            power = power - 12;
         }
     } 
     else if (tolower(response) == 'b'){

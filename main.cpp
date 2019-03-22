@@ -7,6 +7,7 @@
 #include "functions.h"
 #include "events.h"
 #include "variables.h"
+#include "saveload.cpp"
 
 
 
@@ -58,22 +59,6 @@ void ran (){
             usleep(200000);
     }
 
-    void all(){
-        std::cout << "\nScanner Status: \n" << std::endl;
-            atmo(atmoPc);
-            gravity(gravPc);
-            reso(resoPc);
-            water(watePc);
-            temperature(tempPc);
-            science(sciPc);
-            culture(culPc);
-            landing(lanPc);
-            construction(conPc);
-            probe(probNum);
-            powerPercentage(power);
-            std::cout << "__________________________________________________" << std::endl;//50 spaces
-    }
-
 
 //Texts to be printed to console: 
     std::string start = "It is the year 2150, the human civilization has come to an end. Earth is no longer habitable, the humans built"
@@ -98,9 +83,10 @@ int main(){
         printf("\n[–––§ Welcome To 2150! §–––]\n\n");
         std::cout << "[A] [Play]" << std::endl;
         std::cout << "[B] [Exit]" << std::endl;
+        std::cout << "[C] [Save]" << std::endl;
         std::cin >> userInput;
 //game:
-//while(tolower(userInput) != 'b')//-------------------------------------------------------------------------------------------------------------------------------------------
+    //while(tolower(userInput) != 'b')//-------------------------------------------------------------------------------------------------------------------------------------------
     if (tolower(userInput) == 'a'){
     //Start up Message:
         system("clear");
@@ -128,68 +114,29 @@ int main(){
         land(resourceIter);
         system("clear");
 
-    while(power >= 0){
-        //2nd
-        all();        
-        astroids();
-        std::cout << "Enter C to Continue!" << std::flush;
-        std::cin >> userInput;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        system("clear");
-        all();
-        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon, resourceIter);
-        land(resourceIter);
-        system("clear");
-    }
-        /*3rd
-        all();
-        astroids();
-        std::cout << "Enter C to Continue!" << std::flush;
-        std::cin >> userInput;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        system("clear");
-        all();
-        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon, resourceIter);
-        land(resourceIter);
-        system("clear");
+        while(power >= 0){
         
-        //4th
-        all();
-        astroids();
-        std::cout << "Enter C to Continue!" << std::flush;
-        std::cin >> userInput;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        system("clear");
-        all();
-        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon, resourceIter);
-        land(resourceIter);
-        system("clear");
-        
-        //5th
-        all();
-        astroids();
-        std::cout << "Enter C to Continue!" << std::flush;
-        std::cin >> userInput;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        system("clear");
-        all();
-        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon, resourceIter);
-        land(resourceIter); 
-        
-        ran();
-        //ran();
-        //meteor(atmoPc, resoPc);
-        //all();
-        //planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon);
-        //usleep(1000000);
-        
-       */
+            all();        
+            astroids();
+            std::cout << "Enter C to Continue!" << std::flush;
+            std::cin >> userInput;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            system("clear");
+            all();
+            planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon, resourceIter);
+            land(resourceIter);
+            system("clear");
+        }
     } 
     else if (tolower(userInput) == 'b' ){
         system("clear");
-        std::cout << "Thank you for playing" << std::endl;
+        std::cout << "Thank you for playing" << std::endl; 
         std::cout << "Game: 2150" << std::endl;
-        std::cout << "Created by: Siwei Du, 2018\n\n\n" << std::endl;
+        std::cout << "Created by: Siwei & Meguta(Ahmed), 2018\n\n\n" << std::endl;
+    
+    } else if (tolower(userInput) == 'c'){
+        system("clear");
+        saveToFile("savedata.dat");
     
     } else {    
         std::cout << "[You have failed to enter a choice, please enter one of the listed options: ]\n" << std::endl;
