@@ -9,9 +9,6 @@
 #include "variables.h"
 #include "saveload.cpp"
 
-
-
-
 void ran (){
     srand(time(0));
         switch(rand() % 3 + 1){
@@ -25,37 +22,37 @@ void ran (){
 
     void allbegin(){
         std::cout << "Scanner Status: \n" << std::endl;
-            atmo(varList[1]);
+            atmo();
             usleep(200000);
 
-            gravity(varList[2]);
+            gravity();
             usleep(200000);
 
-            reso(varList[3]);
+            reso();
             usleep(200000);
 
-            water(varList[4]);
+            water();
             usleep(200000);
 
-            temperature(varList[5]);
+            temperature();
             usleep(200000);
 
-            science(varList[6]);
+            science();
             usleep(200000);
 
-            culture(varList[7]);
+            culture();
             usleep(200000);
 
-            landing(varList[8]);
+            landing();
             usleep(200000);
 
-            construction(varList[9]);
+            engine();
             usleep(200000);
 
-            probe(varList[0]);
+            probe();
             usleep(200000);
 
-            powerPercentage(power);
+            powerPercentage();
             usleep(200000);
     }
 
@@ -81,13 +78,13 @@ int main(){
         char response;
         system("clear");
         printf("\n[–––§ Welcome To 2150! §–––]\n\n");
-        std::cout << "[A] [Play]" << std::endl;
+        std::cout << "[A] [Play/New Game]" << std::endl;
         std::cout << "[B] [Exit]" << std::endl;
-        std::cout << "[C] [Save]" << std::endl;
+        std::cout << "[L] [Load]" << std::endl;
         std::cin >> userInput;
 //game:
     //while(tolower(userInput) != 'b')//-------------------------------------------------------------------------------------------------------------------------------------------
-    if (tolower(userInput) == 'a'){
+    if (tolower(userInput) == 'a' || tolower(userInput == 'l')){
     //Start up Message:
         system("clear");
         std::cout << "\n\n\n" << std::endl;
@@ -96,47 +93,38 @@ int main(){
         slow_print(start2);
         std::cout << '\n' << std::endl;
 
-    //Enter C to continue:
-        std::cout << "Enter C to Continue!" << std::flush;
-        std::cin >> userInput;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    
-    //Game control Panel:
-        system("clear");
-        allbegin();
-    //Exploration Starts:
+    //Exploration Starts: //POP RIGHT HERE V
         slow_print("*As the ship sails into the dark abyss of space, You come across your first planet*\n\n\n");
         usleep(2000000);
-        //1st
-        system("clear");
-        all();
-        planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon, resourceIter);
-        land(resourceIter);
-        system("clear");
+
+    // Loading file
+        if (tolower(userInput) == 'l'){
+            loadFile("savedata.dat");
+        }
 
         while(power >= 0){
-        
-            all();        
-            astroids();
-            std::cout << "Enter C to Continue!" << std::flush;
-            std::cin >> userInput;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            all();
+            planet(/*atmoCon, gravCon, resoCon, wateCon, tempCon, */varList[12]);
+            land();
             system("clear");
             all();
-            planet(varList, atmoCon, gravCon, resoCon, wateCon, tempCon, resourceIter);
-            land(resourceIter);
-            system("clear");
+            astroids();
+            //system("clear");
+            //all();
+            std::cout << "[S] Save Game     " << "[C] Continue" << std::endl;
+            std::cin >> userInput;
+            if (tolower(userInput) == 's'){
+                system("clear");
+                saveToFile("savedata.dat");
+            }
         }
     } 
     else if (tolower(userInput) == 'b' ){
         system("clear");
         std::cout << "Thank you for playing" << std::endl; 
         std::cout << "Game: 2150" << std::endl;
-        std::cout << "Created by: Siwei & Meguta(Ahmed), 2018\n\n\n" << std::endl;
+        std::cout << "Created by: Siwei & Meguta(Ahmed), started in 2018\n\n\n" << std::endl;
     
-    } else if (tolower(userInput) == 'c'){
-        system("clear");
-        saveToFile("savedata.dat");
     
     } else {    
         std::cout << "[You have failed to enter a choice, please enter one of the listed options: ]\n" << std::endl;

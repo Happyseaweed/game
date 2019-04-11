@@ -3,20 +3,16 @@
 #include "events.h"
 #include "variables.h"
 #include <string>
+#include <iterator>
 #include <vector>
 
 
 
 void saveToFile(const std::string &filename){
-    int variablesValue[varSize] = {
-        probNum, atmoPc, gravPc, resoPc,
-        watePc, tempPc, sciPc, culPc,
-        lanPc, conPc, human, power, resourceIter};
-
     std::ofstream outputFile(filename);
 
-    for (int i = 0; i != varSize; ++i){
-        outputFile << variablesValue[i] << " ";
+    for (int i = 0; i != varSize; i++){
+        outputFile << varList[i] << " ";
 
     }
     outputFile.close();
@@ -24,15 +20,14 @@ void saveToFile(const std::string &filename){
 
 }
 
-void loadFile(const std::string &filename, int (&arr)[varSize]){
-    std::ifstream inputFile(filename);
-
-    int val, cnt;
-    while(inputFile >> val){
-        *arr[cnt] = val;
-        ++cnt;
+void loadFile(const std::string &filename){
+    std::ifstream inputFile(filename);//Takes in file as input
+    int val = 0;
+    int n = 0;
+    while (inputFile >> val){
+        varList[n] = val;
+        n++;
     }
-
     inputFile.close();
     std::cout << "Super Succ" << std::endl;
 }

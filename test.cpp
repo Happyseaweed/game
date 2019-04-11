@@ -13,5 +13,9 @@ int randomNumberGenerator(){ // generates a random number from 1 to 10
 }
 
 int main(){
-    int test = 100;
+    int a = 0;
+    for (int i = 0; i < 10; i++){
+        a = randomNumberGenerator();
+        cout << a;
+    }
 }

@@ -31,6 +31,8 @@ void astroids() {//-------------------------------------------------------------
     }
 
     if (tolower(option) == 'a'){
+        // Year adding
+        varList[11] += 1;
         std::cout << "You risked flying through the astroid field" << std::endl;
     //PROBLEM: If randnum is already declard randomly, 
         //and the if condition only accepts it when it is above or equal to 5
@@ -38,24 +40,30 @@ void astroids() {//-------------------------------------------------------------
         //Solution? Seperate randum variable, or just use the function
     //Random Damage: 
         if (randomNumberGenerator() > 3){
-            randNum = randomNumberGenerator();
             start:
-            if (randNum != 0 && randNum != 10){
+            randNum = randomNumberGenerator();
+            if (randNum > 0 && randNum < 10){
+                randNum = randomNumberGenerator();
                 varList[randNum] -= randDmg;
-                std::cout << "Astroids collide with your ship, ripping and damaging the componants.\n" << std::endl;
+                std::cout << "Astroids collide with your ship, ripping and damaging the componants.\n" << std::endl; 
+                
+                // Power
+                varList[13] -= 2;
             } else {
-                std::cout << "hello" << std::endl;
                 goto start;
             }
-            power = power - 2;
+            
         } else {
             std::cout << "Your ship flied through safetly!" << std::endl;
-            power = power - 2;
+            varList[13] -= 2;
         }
     } 
     else if (tolower(option) == 'b') {
         std::cout << "You have changed the ship's route, you are now heading towards a new planet" << std::endl;
-        power = power - 4;
+        
+        // Power
+        varList[13] -= 4;
+        varList[13] += 2;
         if (randomNumberGenerator() >= 5){
             system("clear");
             all();
@@ -71,9 +79,10 @@ void blackhole(){//-------------------------------------------------------------
     int randNum = randomNumberGenerator();
     int randDmg = randomNumberGenerator();
     int randSaying = randomNumberGenerator();
+
     if (randSaying >= 5){
         std::cout << "You come across a unusual spot, your gravity scanner detects a sharp, strange gravitational pull but all other scanners do not detect anything, there is only one possibility, a black hole." << std::endl;
-        std::cout << "Your ship begins to turn towards the abyss of space, where you see a slight curve in the area around it." << std::endl;
+        std::cout << "Your ship begins to turn uncontrollabely towards the abyss of space, where you see a slight curve in the area around it." << std::endl;
         std::cout << "[A] Push the engines past their safety limit and attempt to escape the 'black hole'. . ." << std::endl;
         std::cout << "[B] Restart the scanners, the harsh conditions of space might have caused it to malfunction." << std::endl;
         std::cin >> response;
@@ -88,22 +97,36 @@ void blackhole(){//-------------------------------------------------------------
     if (tolower(response) == 'a'){
         if (randNum >= 5){
             std::cout << "You have flown away safely, you were almost in the grasp of unescapeble gravity." << std::endl;
-            power = power - 10;
+            varList[13] -= 5;
+            varList[9] -= 5;
         } else {
-            std::cout << "You were able to escape, but barely, large amounts of scrap metal gets ripped off of your ship and falls back into the black hole . . ." << std::endl;
+            std::cout << "You were able to escape, but barely, large amounts of scrap metal are ripped off of the ship . . ." << std::endl;
             randNum = randomNumberGenerator();
-            
+
             start:
             if (randNum != 0 && randNum != 10){
                 varList[randNum] -= randDmg;
             } else {
                 goto start;
             }
-            power = power - 12;
+            varList[13] -= 5;
+            varList[9] -= 5;
         }
     } 
     else if (tolower(response) == 'b'){
-        std::cout << "You have changed your ship's course, you are now heading towards a new planet!" << std::endl;    
+        randNum = randomNumberGenerator();
+        if (randNum > 5){ //Gets damaged
+            std::cout << "You restart the scanners, hoping that this will fix the problem, but as they reboot, the emergenc system warns you about a near black hole. " << std::endl;
+            std::cout << "You immediatly engage the engines and attempts to escape the black hole, you barely escape. . ." << std::endl;
+            std::cout << "Your ship has been severely damaged. . ." << std::endl;
+            for (int i = 0; i < 14; i++){
+                varList[i] -= 2;
+            }
+        } else { // Malfunction
+            std::cout << "You restart your scanners, hoping that this will fix the malfunction. . ." << std::endl;
+            std::cout << "The scanners boot back on, and there appears to be no black hole near you, it was indeed a malfunction. . ." << std::endl;
+
+        }
     }
 }
 
@@ -150,3 +173,32 @@ void oHeat(){
         
     }
 }
+
+void colonize(){
+    // First sentence
+    std::string message1 = "The colonists begin constructing a settlement with the aid of the seedship's construction robots.";
+    std::string message2;
+    switch (varList[14]){
+        case 0:
+            message2 = "They cannot go outside due to the \'Non Breathable\' atmosphere.";
+            break;
+        case 1:
+            message2 = "They cannot go outside until they have adapted to the \'Corrosive\' atmosphere.";
+            break;
+        case 2:
+            message2 = "They can go outside, but they must wear heavy breathing gear due to the \'Toxic\' atmosphere.";
+            break;
+        case 3:
+            message2 = "They can leave the ship with minimal breathing gear.";
+            break;
+        case 4:
+            message2 = "They can leave the ship with no breathing gear.";
+            break;
+        case 5:
+            message2 = "";
+            break;
+    }
+    
+};
+   
+
