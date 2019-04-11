@@ -1,5 +1,5 @@
 # game
-A little game I am working on
+A little game I am working on.
 Hello there, thank you for downloading this game. 
 This is a game about space exploration, where you can make decisions that affect the future of the humans
 There are 2 modes, a story line, where you can make your own character and play, and a free roam mode, where you can
