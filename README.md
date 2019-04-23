@@ -18,4 +18,5 @@ Windows:
 STILL WORKING ON IT
 
 Credits: 
-HappySeaweed(Me) - Creator/designer of the game
+HappySeaweed(Me) - Creator/designer of the game 
+meguta(A friend) - assistant and co-creator
