@@ -55,7 +55,7 @@ int varList[varSize] = {
 
 
 std::string atmoCon[] = {"Non Breathable", "Corrosive", "Toxic", "Contains Oxygen", "Breathable", "None"};
-std::string gravCon[] = {"Very Low", "Low", "Similar to Earth", "High", "Very High", "None"};
+std::string gravCon[] = {"Almost None", "Very Low", "Low", "Similar to Earth", "High", "Very High"};
 std::string resoCon[] = {"Rare", "Limited", "Uncommon", "Moderate", "Rich", "None"}; // determines the refuel amount
                         // +2        +4      +6           +8          +10       +0
                         // 0 1 2 3 4 5

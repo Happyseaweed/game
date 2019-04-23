@@ -101,7 +101,7 @@ int main(){
         if (tolower(userInput) == 'l'){
             loadFile("savedata.dat");
         }
-
+    // Game Loop
         while(power >= 0){
             all();
             planet(/*atmoCon, gravCon, resoCon, wateCon, tempCon, */varList[12]);
@@ -109,6 +109,20 @@ int main(){
             system("clear");
             all();
             astroids();
+            //system("clear");
+            //all();
+            std::cout << "[S] Save Game     " << "[C] Continue" << std::endl;
+            std::cin >> userInput;
+            if (tolower(userInput) == 's'){
+                system("clear");
+                saveToFile("savedata.dat");
+            }
+            all();
+            planet(/*atmoCon, gravCon, resoCon, wateCon, tempCon, */varList[12]);
+            land();
+            system("clear");
+            all();
+            blackhole();
             //system("clear");
             //all();
             std::cout << "[S] Save Game     " << "[C] Continue" << std::endl;

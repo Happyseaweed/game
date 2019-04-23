@@ -1,0 +1,45 @@
+Started on April.09th.2019
+
+Everytime the code is edited, please keep track of what is changed, what is fixed and what is being developed!
+
+April.09th.2019
+Development:
+Fixed:
+Changes:
+Notes:
+    The astroid field seems to not be able to damage the atmosphere, gravity or the resource scanners
+    everything else can be damaged
+
+April.11th.2019
+development: Working on black hole function and fixing the damage systen of astroid function
+fixed:
+Changes:
+Notes:
+
+April.14th.2019
+
+April.23rd.2019
+TODO: Finish off events colonize function, call the function(colonize) from main.cpp when colonizing
+TODO: Make event randomizer that randomly picks an event function
+TODO: Add in more events ()
+Existing Events(interaction):
+-Astroids (chance of damaging stuff)
+-Black hole (damage engine or all other stuff)
+-meteor(unfinished) (damage stuff)***********************************************************
+-Over heating (kills humans)*****************************************************************
+
+ADDING:
+-Elon musks roadster collides with the ship******
+-System bug(kills humans and damages scanners)*******************
+-System reading error (change text to random shit(„´‰ˇÁ¨Ô˜ı◊ÇÎˇ)) CAUSED by BUG******************************
+
+-Worm hole (maybe adding different galaxies, so different planets)**************************POSSIBLE***************
+
+-Planet description (describes the planet's characteristics)****************************
+
+*****TODO: Polish up the game and remove all signs of bugs*********************************************************
+
+PLAYABILITY:
+*Notices that the year only adds when player flies through astroid field
+*Everything else seems to be good
+*Black hole needs to be fixed a little bit because the event does not make sense very much.

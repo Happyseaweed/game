@@ -27,8 +27,10 @@ void planet (/*std::string atmoCon[], std::string gravCon[], std::string resoCon
         varList[14] = 1 + rand()%5;
         std::cout << "[Atmosphere]: " << atmoCon[varList[14]] << std::endl;
     } else {
-        if (randomScan >= 3){
-            std::cout << "[Atmosphere]:"; usleep(10000); std::cout << " Scan Failed" << std::endl;
+        if (randomScan >= 5){
+            std::cout << "[Atmosphere]:"; 
+            usleep(10000); 
+            std::cout << " Scan Failed" << std::endl;
         } else {
             std::cout << "[Atmosphere]: " << atmoCon[varList[14]] << std::endl;
         } 
@@ -39,7 +41,7 @@ void planet (/*std::string atmoCon[], std::string gravCon[], std::string resoCon
         varList[15] = 1 + rand()%5;
         std::cout << "[Gravity]: " << gravCon[varList[15]] << std::endl;
     } else {
-        if (randomScan >= 3){
+        if (randomScan >= 5){
             std::cout << "[Gravity]:"; usleep(10000); std::cout << " Scan Failed" << std::endl;
         }else{
             std::cout << "[Gravity]: " << gravCon[varList[15]] << std::endl;
@@ -50,7 +52,7 @@ void planet (/*std::string atmoCon[], std::string gravCon[], std::string resoCon
         resourceIndex = 1 + rand()%5; //Determaining the amount of fuel that is refueled
         std::cout << "[Resources]: " << resoCon[resourceIndex] << std::endl;
     } else {
-        if (randomScan >= 3) {
+        if (randomScan >= 5) {
             std::cout << "[Resources]:"; usleep(10000); std::cout << " Scan Failed" << std::endl;    
         }else{
             std::cout << "[Resources]: " << resoCon[resourceIndex] << std::endl;
@@ -61,7 +63,7 @@ void planet (/*std::string atmoCon[], std::string gravCon[], std::string resoCon
         varList[16] = 1 + rand()%5;
         std::cout << "[Water]: " << wateCon[varList[16]] << std::endl;
     } else {
-        if(randomScan >= 3){
+        if(randomScan >= 5){
             std::cout << "[Water]:"; usleep(10000); std::cout << " Scan Failed" << std::endl;
         }else{
             std::cout << "[Water]: " << wateCon[varList[16]] << std::endl;
@@ -72,7 +74,7 @@ void planet (/*std::string atmoCon[], std::string gravCon[], std::string resoCon
         varList[17] = 1 + rand()%5;
         std::cout << "[Temperature]: " << tempCon[varList[17]] << std::endl;
     } else {
-        if (randomScan >= 3){
+        if (randomScan >= 5){
             std::cout << "[Temperature]:"; usleep(10000); std::cout << " Scan Failed" << std::endl;
         }else{
             std::cout << "[Temperature]: " << tempCon[varList[17]] << std::endl;

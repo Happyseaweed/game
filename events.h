@@ -10,6 +10,13 @@
 #include "variables.h"
 #include "functions.h"
 
+
+void randomDamage(){//Possible function, returns a number(the scanner's array num)
+
+}
+
+
+
 //Status: Complete && working
 void astroids() {//------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     srand(time(0));
@@ -43,7 +50,7 @@ void astroids() {//-------------------------------------------------------------
             start:
             randNum = randomNumberGenerator();
             if (randNum > 0 && randNum < 10){
-                randNum = randomNumberGenerator();
+                //randNum = randomNumberGenerator();
                 varList[randNum] -= randDmg;
                 std::cout << "Astroids collide with your ship, ripping and damaging the componants.\n" << std::endl; 
                 
@@ -113,15 +120,18 @@ void blackhole(){//-------------------------------------------------------------
             varList[9] -= 5;
         }
     } 
-    else if (tolower(response) == 'b'){
+    else if (tolower(response) == 'b'){//---------------------------------------Damage system
         randNum = randomNumberGenerator();
-        if (randNum > 5){ //Gets damaged
+        if (randNum > 5){ //
             std::cout << "You restart the scanners, hoping that this will fix the problem, but as they reboot, the emergenc system warns you about a near black hole. " << std::endl;
             std::cout << "You immediatly engage the engines and attempts to escape the black hole, you barely escape. . ." << std::endl;
             std::cout << "Your ship has been severely damaged. . ." << std::endl;
             for (int i = 0; i < 14; i++){
-                varList[i] -= 2;
+                if (i != 11){
+                    varList[i] -= 2;
+                }
             }
+
         } else { // Malfunction
             std::cout << "You restart your scanners, hoping that this will fix the malfunction. . ." << std::endl;
             std::cout << "The scanners boot back on, and there appears to be no black hole near you, it was indeed a malfunction. . ." << std::endl;
@@ -129,6 +139,7 @@ void blackhole(){//-------------------------------------------------------------
         }
     }
 }
+
 
 //Status: Fixing
 void meteor(int atmoPc, int resoPc){//-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -178,6 +189,8 @@ void colonize(){
     // First sentence
     std::string message1 = "The colonists begin constructing a settlement with the aid of the seedship's construction robots.";
     std::string message2;
+    
+    // Breathing statement
     switch (varList[14]){
         case 0:
             message2 = "They cannot go outside due to the \'Non Breathable\' atmosphere.";
@@ -194,11 +207,158 @@ void colonize(){
         case 4:
             message2 = "They can leave the ship with no breathing gear.";
             break;
+        default:
+            std::cerr << "lungs.exe was not found!! No breathing level indicated." << std::endl;
+            break;
+    }
+
+    // Temperature statement.
+    std::string message3;
+    switch (varList[17]){
+        case 0:
+            message3 = "The colonists are able to leave the ship for short periods of time with heated suits due to the \'Near Absolute Zero\' temperature.";
+            break;
+        
+        case 1:
+            message3 = "The colonists are able to leave the ship and transerve the land for small periods of time due to the  \'Very Cold\' temperature.";
+            break;
+        
+        case 2:
+            message3 = "The colonists are able to leave the ship for long periods of time with multiple layers of clothing due to the cold temperature.";
+            break;
+        
+        case 3:
+            message3 = "The colonists are able to traverse in and out of the ship freely for exploration due to the moderate temperature.";
+            break;
+        
+        case 4:
+            message3 = "The colonists are able to explore the planet for moderate periods of time before needing to rehydrate.";
+            break;
+        
         case 5:
-            message2 = "";
+            message3 = "The colonists are able to leave the ship for short periods of timeand explore with water cooled spacesuits.";
+            break;
+
+    }
+
+    // Gravity
+    std::string message4;
+    switch (varList[15])
+    {
+        case 0:
+            message4 = "The exploration rate of the colonists have been significantly reduced due to the \'Extremely Low Gravity\' of the planet.";
+            break;
+        case 1:
+            message4 = "The exploration rate of the colonists is slower due to the \'Very Low\' gravity level.";
+            break;
+
+        case 2:
+            message4 = "The exploration rate of the colonists is faster due to the \'Low\' gravity level.";
+            break;
+
+        case 3:
+            message4 = "The colonists are able to explore the planet and study its enviroments with ease due to the similar-to-earth gravity.";
+            break;
+
+        case 4:
+            message4 = "The \'High\' gravity level makes exploration within the planet difficult amongst the colonists.";
+            break;
+
+        case 5:
+            message4 = "The extremely high gravity pull of the planet has reduced the exploration speed significantly. Many colonists have trouble getting used to this high gravity as they pass out frequently.";
+            break;
+
+        default:
             break;
     }
     
-};
+    // Water
+    std::string message5;
+    switch (varList[16]){
+        case 0:
+            message5 = "The colonists must fight over the extremely limited amount of water.";
+            break;
+        case 1:
+            message5 = "The colonists are able to obtain water through the rivers on the planet.";
+            break;
+        case 2:
+            message5 = "Many colonists are not able to drink water on some days due to the small amount of water on the planet.";
+            break;
+        case 3:
+            message5 = "The colonists are able to survive easily with the high amounts of water from the oceans.";
+            break;
+        case 4:
+            message5 = "The colonists are unable to get high amounts of water due to most of the water being frozen in the ice caps.";
+            break;
+        default:
+            break;
+    }
+    // Resources!
+    std::string message6;
+    switch (varList[12]){
+        case 0:
+            message6 = "They must compete over the resources to due to the low amount.";
+            break;
+        case 1:
+            message6 = "The limited resources causes for some colonists without resources to expand their settlement.";
+            break;
+        case 2:
+            message6 = "They have just enough resources for all the colonists to be well off.";
+            break;
+        case 3:
+            message6 = "They have enough resources for all the colonists to be able to live without worry.";
+            break;
+        case 4:
+            message6 = "All of the colonists are able to live in luxury due to the rich resources on the planet.";
+            break;
+        case 5:
+            message6 = "";
+            break;
+    }
+    //Scientific Data
+    std::string message7;
+    if (varList[16] <= 25){
+        message7 = "The colonists are not able to make signifcant ";
+    }
+    /*
+        case 1:
+            message5 = "";
+            break;
+        case 2:
+            message5 = "";
+            break;
+        case 3:
+            message5 = "";
+            break;
+        case 4:
+            message5 = "";
+            break;
+        case 5:
+            message5 = "";
+            break;
+        */
+    //Cultural Data
+    std::string message8;
+    switch (varList[16]){
+        case 0:
+            message8 = "";
+            break;
+        case 1:
+            message8 = "";
+            break;
+        case 2:
+            message8 = "";
+            break;
+        case 3:
+            message8 = "";
+            break;
+        case 4:
+            message8 = "";
+            break;
+        case 5:
+            message8 = "";
+            break;
+    }
    
+}
 
