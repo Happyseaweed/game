@@ -318,46 +318,25 @@ void colonize(){
     //Scientific Data
     std::string message7;
     if (varList[16] <= 25){
-        message7 = "The colonists are not able to make signifcant ";
+        message7 = "The colonists are not able to make signifcant progress with the materials they have due to the lack of scienctific knowledge.";
+    } else if (varList[16] > 25 && varList[16] <= 50){
+        message7 = "The colonists are able to make small incremental progress with the information they have.";
+    } else if (varList[16] > 50 && varList[16] <= 75){
+        message7 = "The colonists are able to make good process with the scientific knowledge they have left.";
+    } else if (varList[16] > 75){
+        message7 = "The colonists are able to make the maximum amount of process with information they have due to the high scientific knowledge base.";
     }
-    /*
-        case 1:
-            message5 = "";
-            break;
-        case 2:
-            message5 = "";
-            break;
-        case 3:
-            message5 = "";
-            break;
-        case 4:
-            message5 = "";
-            break;
-        case 5:
-            message5 = "";
-            break;
-        */
-    //Cultural Data
+
+    // Cultural Database
     std::string message8;
-    switch (varList[16]){
-        case 0:
-            message8 = "";
-            break;
-        case 1:
-            message8 = "";
-            break;
-        case 2:
-            message8 = "";
-            break;
-        case 3:
-            message8 = "";
-            break;
-        case 4:
-            message8 = "";
-            break;
-        case 5:
-            message8 = "";
-            break;
+    if (varList[17] <= 25){
+        message7 = "The colonists are not able to make signifcant progress with the materials they have due to the lack of scienctific knowledge.";
+    } else if (varList[17] > 25 && varList[17] <= 50){
+        message7 = "The colonists are able to make small incremental progress with the information they have.";
+    } else if (varList[17] > 50 && varList[17] <= 75){
+        message7 = "The colonists are able to make good process with the scientific knowledge they have left.";
+    } else if (varList[17] > 75){
+        message7 = "The colonists are able to make the maximum amount of process with information they have due to the high scientific knowledge base.";
     }
    
 }
