@@ -50,6 +50,19 @@ int varList[varSize] = {
     tempIndex, // 17
     };
 
+std::string varListNames[11] = {
+    "Surface Probes",
+    "Atmosphere Scanner",
+    "Gravity Scanner",
+    "Resource Scanner",
+    "Water Scanner",
+    "Temperature Scanner",
+    "Scientific Database",
+    "Cultural Database",
+    "Landing Gears",
+    "Engine",
+    "Cryosleep chambers"
+};
 //array - start 0
 //order - start 1
 

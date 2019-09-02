@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <queue>
 #include <unistd.h>
 #include <limits>
 #include <term.h>
@@ -9,12 +10,20 @@
 #include "variables.h"
 #include "saveload.cpp"
 
+
+
 void ran (){
     srand(time(0));
-        switch(rand() % 3 + 1){
+        switch(rand() % 10 + 1){
             case 1: astroids(); break;
             case 2: blackhole(); break;
-            case 3: std::cout << "YES WORKS" << std::endl; break;
+            case 3: oHeat(); break;
+            case 4: meteor(); break;
+            case 5: blackhole(); break;
+            case 6: oHeat(); break;
+            case 7: meteor(); break;
+            case 8: oHeat(); break;
+            case 9: blackhole(); break;
         }
 }
 
@@ -57,7 +66,7 @@ void ran (){
     }
 
 
-//Texts to be printed to console: 
+//Texts to be printed to console:
     std::string start = "It is the year 2150, the human civilization has come to an end. Earth is no longer habitable, the humans built"
                     " a space ship with their last availible resources. As the count down ends and the engines of the ship roars to life."
                     "The last hopes of human civilization rest in the cryosleep chambers of the ship. The people on Earth begins shrinking,"
@@ -104,46 +113,78 @@ int main(){
     // Game Loop
         while(power >= 0){
             all();
-            planet(/*atmoCon, gravCon, resoCon, wateCon, tempCon, */varList[12]);
-            land();
+            planet(varList[12]);
+            if (land() == 0)
+                return 0;
             system("clear");
             all();
-            astroids();
-            //system("clear");
-            //all();
+            oHeat();
             std::cout << "[S] Save Game     " << "[C] Continue" << std::endl;
             std::cin >> userInput;
             if (tolower(userInput) == 's'){
                 system("clear");
                 saveToFile("savedata.dat");
             }
+            varList[11] +=1;
+            //-------------------------------------------------------------------------------
             all();
-            planet(/*atmoCon, gravCon, resoCon, wateCon, tempCon, */varList[12]);
-            land();
+            planet(varList[12]);
+            if (land() == 0)
+                return 0;
             system("clear");
             all();
             blackhole();
-            //system("clear");
-            //all();
             std::cout << "[S] Save Game     " << "[C] Continue" << std::endl;
             std::cin >> userInput;
             if (tolower(userInput) == 's'){
                 system("clear");
                 saveToFile("savedata.dat");
             }
+            varList[11] +=1;
+            //---------------------------------------------------------------------------------
+            all();
+            planet(varList[12]);
+            if (land() == 0)
+                return 0;
+            system("clear");
+            all();
+            astroids();
+            std::cout << "[S] Save Game     " << "[C] Continue" << std::endl;
+            std::cin >> userInput;
+            if (tolower(userInput) == 's'){
+                system("clear");
+                saveToFile("savedata.dat");
+            }
+            varList[11] +=1;
+            //---------------------------------------------------------------------------------------
+            all();
+            planet(varList[12]);
+            if (land() == 0)
+                return 0;
+            system("clear");
+            all();
+            meteor();
+            std::cout << "[S] Save Game     " << "[C] Continue" << std::endl;
+            std::cin >> userInput;
+            if (tolower(userInput) == 's'){
+                system("clear");
+                saveToFile("savedata.dat");
+            }
+            varList[11] +=1;
+
         }
-    } 
+    }
     else if (tolower(userInput) == 'b' ){
         system("clear");
-        std::cout << "Thank you for playing" << std::endl; 
+        std::cout << "Thank you for playing" << std::endl;
         std::cout << "Game: 2150" << std::endl;
         std::cout << "Created by: Siwei & Meguta(Ahmed), started in 2018\n\n\n" << std::endl;
-    
-    
-    } else {    
+
+
+    } else {
         std::cout << "[You have failed to enter a choice, please enter one of the listed options: ]\n" << std::endl;
         std::cin >> userInput;
     }
-    
-    return 0; 
+
+    return 0;
 }

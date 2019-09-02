@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <thread>
 #include "variables.h"
+//#include "events.h"
+
 
 int randomNumberGenerator(){ // generates a random number from 1 to 10
     srand(time(0));
@@ -82,6 +84,7 @@ void planet (/*std::string atmoCon[], std::string gravCon[], std::string resoCon
     }
 }
 
+/*
 void land(){
     char land;
     std::cout << "\n[A]Land    [B]Skip" << std::endl;
@@ -96,7 +99,6 @@ void land(){
         }
 
         if (tolower(land) == 'a'){
-
             switch (resourceIndex){
                 case 0:
                     varList[13] += 3;
@@ -127,12 +129,14 @@ void land(){
             std::cout << "You have chosen to colonize this planet, give it a name!!" << std::endl;
             std::string planetName;
             getline(std::cin, planetName);
+            //colonize();
         }
     }
     else if (tolower(land) == 'b'){
         
     }
 }
+*/
 
 
 void probe(){

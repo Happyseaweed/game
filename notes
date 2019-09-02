@@ -1,0 +1,25 @@
+SAVE / LOAD SYSTEM
+
+1. Main Idea
+    a) Save and load from file using C++ (Header: fstream)
+    b) IT IS HIGHLY FUNCTIONAL :D
+2. How do we accomplish?
+    a) Make a file for save data
+        i. ifstream and ofstream
+    b) Make a function to process save data
+        i. Possible function layout:
+            - [for loop] going through .dat file
+            - depending [if/else] on word number (variable used in the for loop), 
+            update corresponding variable
+            - continue until .dat file is completed
+    c) Give options to players to save and load
+    d) Give steps to get to the point in time the program is in (simple, but ineffcient)
+    e) By condensing (keeping filesize low) most important (unique) info in a file (.dat) 
+    and reading (loading) the info
+        i. Important (unique to each instance of the program) Data
+            - # of probs
+            - Scanners percents: atmosphere, gravity, resources, water, temperature
+            - Databases: Scientifitic and Cultural
+            - Current event
+
+
